@@ -1,0 +1,25 @@
+{
+    "name": "codeexpert/yii2-firephp",
+    "type": "library",
+    "description": "FirePHP extension for Yii Framework.",
+    "keywords": ["firephp", "firebug", "yii", "logging", "log", "profiling", "profile"],
+    "homepage": "https://github.com/pgrzelka/yii2-firephp",
+    "authors": [
+        { "name": "Piotr Grzelka", "email": "info@codeexpert.pl", "homepage": "http://codeexpert.pl" }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "firephp/firephp-core": ">=0.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "SK": "lib"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}

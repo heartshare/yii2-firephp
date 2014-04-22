@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.codeexpert.pl/
- * @copyright Piotr Grzelka
- * @license http://www.yiiframework.com/license/
+ * @link https://github.com/pgrzelka/yii2-firephp
+ * @author Piotr Grzelka
+ * @license MIT
  */
 
 namespace codeexpert\log;
@@ -10,6 +10,7 @@ namespace codeexpert\log;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\FileHelper;
+use yii\log\Logger;
 use yii\log\Target;
 
 /**
@@ -32,13 +33,41 @@ class FirePHPTarget extends Target
      */
     public function export()
     {
-        $text = implode("\n", array_map([$this, 'formatMessage'], $this->messages)) . "\n";
+        $firephp = \FirePHP::getInstance(true);
 
-        $firephp = FirePHP::getInstance(true);
-//
-//        $var = array('i'=>10, 'j'=>20);
-//
-//        $firephp->log($var, 'Iterators');
-//        return $text;
+        try {
+            foreach ($this->messages as $message) {
+
+                switch ($message[1]) {
+                    case Logger::LEVEL_ERROR:
+                        $firephp->error($message[0], $message[2]);
+                        break;
+                    case Logger::LEVEL_WARNING:
+                        $firephp->warn($message[0], $message[2]);
+                        break;
+                    case Logger::LEVEL_INFO:
+                        $firephp->info($message[0], $message[2]);
+                        break;
+//                    case Logger::LEVEL_TRACE:
+//                        $firephp->log($message[0]);
+//                        break;
+                    default:
+                        $firephp->log($message[0], $message[2]);
+                        break;
+//                    case Logger::LEVEL_PROFILE:
+//                        $firephp->log($message[0], $message[2]);
+//                        break;
+//                    case Logger::LEVEL_PROFILE_BEGIN:
+//                        $firephp->log($message[0], $message[2]);
+//                        break;
+//                    case Logger::LEVEL_PROFILE_END:
+//                        $firephp->log($message[0], $message[2]);
+//                        break;
+                }
+            }
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
+
 }

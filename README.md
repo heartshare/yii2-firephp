@@ -8,6 +8,12 @@ If it does not work, try adding "ob_start ()" in index.php
 Usage
 -----
 
+composer.json
+
+	"require": {
+        "codeexpert/yii2-firephp": "dev-master"
+	},
+
 config file:
 
     $config = [

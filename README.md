@@ -11,14 +11,8 @@ Usage
 composer.json
 
 	"require": {
-        "codeexpert/yii2-firephp": "dev-master"
+        	"codeexpert/yii2-firephp": "0.1.*@dev"
 	},
-	"repositories": [
-            {
-                "type": "vcs",
-                "url":  "git@github.com:pgrzelka/yii2-firephp.git"
-            }
-        ],
 
 config file:
 
